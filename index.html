@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Upload</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <style>
+  /* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #6990F2;
+}
+
+::selection {
+  color: #fff;
+  background: #6990F2;
+}
+
+.wrapper {
+  width: 90%;
+  max-width: 430px;
+  background: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 7px 7px 12px rgba(0,0,0,0.05);
+}
+
+.wrapper header {
+  color: #6990F2;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.wrapper form {
+  height: auto;
+  display: flex;
+  cursor: pointer;
+  margin: 20px 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+  border: 2px dashed #6990F2;
+}
+
+form :where(i, p) {
+  color: #6990F2;
+}
+
+form i {
+  font-size: 50px;
+}
+
+form p {
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+section .row {
+  margin-bottom: 10px;
+  background: #E9F0FF;
+  list-style: none;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+section .row i {
+  color: #6990F2;
+  font-size: 24px;
+}
+
+section .details span {
+  font-size: 14px;
+}
+
+.progress-area .row .content {
+  width: 100%;
+  margin-left: 15px;
+}
+
+.progress-area .details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+  justify-content: space-between;
+}
+
+.progress-area .content .progress-bar {
+  height: 6px;
+  width: 100%;
+  margin-bottom: 4px;
+  background: #fff;
+  border-radius: 30px;
+}
+
+.content .progress-bar .progress {
+  height: 100%;
+  width: 0%;
+  background: #6990F2;
+  border-radius: inherit;
+}
+
+.uploaded-area {
+  max-height: 232px;
+  overflow-y: auto;
+}
+
+.uploaded-area.onprogress {
+  max-height: 150px;
+}
+
+.uploaded-area::-webkit-scrollbar {
+  width: 0px;
+}
+
+.uploaded-area .row .content {
+  display: flex;
+  align-items: center;
+}
+
+.uploaded-area .row .details {
+  display: flex;
+  margin-left: 15px;
+  flex-direction: column;
+}
+
+.uploaded-area .row .details .size {
+  color: #404040;
+  font-size: 11px;
+}
+
+.uploaded-area i.fa-check {
+  font-size: 16px;
+}
+
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #fff;
+  border: 1px solid #6990F2;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90%;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.notification p {
+  margin-bottom: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.notification button {
+  background: #6990F2;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.notification button:hover {
+  background: #5a80d1;
+}
+
+.notification .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #6990F2;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.notification .close-btn:hover {
+  background: #5a80d1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 15px;
+  }
+
+  .wrapper header {
+    font-size: 20px;
+  }
+
+  .wrapper form i {
+    font-size: 40px;
+  }
+
+  .wrapper form p {
+    font-size: 14px;
+  }
+
+  section .row i {
+    font-size: 20px;
+  }
+
+  section .details span {
+    font-size: 12px;
+  }
+
+  .notification {
+    bottom: 10px;
+    right: 10px;
+    padding: 10px;
+  }
+
+  .notification p {
+    font-size: 14px;
+  }
+
+  .notification button {
+    padding: 8px 16px;
+  }
+
+  .notification .close-btn {
+    font-size: 14px;
+    padding: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 10px;
+  }
+
+  .wrapper header {
+    font-size: 18px;
+  }
+
+  .wrapper form i {
+    font-size: 30px;
+  }
+
+  .wrapper form p {
+    font-size: 12px;
+  }
+
+  section .row i {
+    font-size: 18px;
+  }
+
+  section .details span {
+    font-size: 10px;
+  }
+
+  .notification {
+    bottom: 5px;
+    right: 5px;
+    padding: 8px;
+  }
+
+  .notification p {
+    font-size: 12px;
+  }
+
+  .notification button {
+    padding: 6px 12px;
+  }
+
+  .notification .close-btn {
+    font-size: 12px;
+    padding: 3px;
+  }
+}
+
+.download-animation {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.download-animation.active {
+  display: block;
+}
+
+.download-animation .loader {
+  border: 4px solid #fff;
+  border-top: 4px solid #6990F2;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header><center><img src="https://github.com/Ayush01arya/ChatBot/raw/main/Group.svg"></center>Gyaan Certificate Center </header>
+<!--    <!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Certificate Generator</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Upload Excel File to Generate Certificates</h1>-->
+<!--    <form action="/upload" method="POST" enctype="multipart/form-data">-->
+<!--        <label for="file">Choose Excel File:</label>-->
+<!--        <input type="file" id="file" name="file" accept=".xlsx" required>-->
+<!--        <button type="submit">Generate Certificates</button>-->
+<!--    </form>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+      <input class="file-input" type="file" name="file" accept=".xlsx" hidden>
+      <i class="fas fa-cloud-upload-alt"></i>
+      <p>Browse File to Upload</p>
+    </form>
+    <section class="progress-area"></section>
+    <section class="uploaded-area"></section>
+  </div>
+
+  <div class="notification" id="notification">
+<!--    <button class="close-btn" id="closeBtn">&times;</button>-->
+    <p>Certificate is ready for download!</p>
+    <button id="downloadButton">Download Certificate</button>
+  </div>
+
+  <div class="download-animation" id="downloadAnimation">
+    <p>Downloading...</p>
+    <div class="loader"></div>
+  </div>
+
+<script>
+  const form = document.querySelector("form"),
+      fileInput = document.querySelector(".file-input"),
+      progressArea = document.querySelector(".progress-area"),
+      uploadedArea = document.querySelector(".uploaded-area"),
+      downloadBtn = document.getElementById("downloadButton");
+
+form.addEventListener("click", () => {
+  fileInput.click();
+});
+
+fileInput.onchange = ({target}) => {
+  let file = target.files[0];
+  if (file) {
+    let fileName = file.name;
+    if (fileName.length >= 12) {
+      let splitName = fileName.split('.');
+      fileName = splitName[0].substring(0, 13) + "... ." + splitName[1];
+    }
+    uploadFile(file);
+  }
+}
+
+function uploadFile(file) {
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", "https://graphciera.onrender.com/upload", true); // Update URL to your API's domain
+  xhr.upload.addEventListener("progress", ({loaded, total}) => {
+    let fileLoaded = Math.floor((loaded / total) * 100);
+    let fileTotal = Math.floor(total / 1000);
+    let fileSize = (fileTotal < 1024) ? fileTotal + " KB" : (loaded / (1024*1024)).toFixed(2) + " MB";
+    let progressHTML = `<li class="row">
+                          <i class="fas fa-file-alt"></i>
+                          <div class="content">
+                            <div class="details">
+                              <span class="name">${file.name} • Uploading</span>
+                              <span class="percent">${fileLoaded}%</span>
+                            </div>
+                            <div class="progress-bar">
+                              <div class="progress" style="width: ${fileLoaded}%"></div>
+                            </div>
+                          </div>
+                        </li>`;
+    uploadedArea.classList.add("onprogress");
+    progressArea.innerHTML = progressHTML;
+    if (loaded === total) {
+      progressArea.innerHTML = "";
+      let uploadedHTML = `<li class="row">
+                            <div class="content upload">
+                              <i class="fas fa-file-alt"></i>
+                              <div class="details">
+                                <span class="name">${file.name} • Uploaded</span>
+                                <span class="size">${fileSize}</span>
+                              </div>
+                            </div>
+                            <i class="fas fa-check"></i>
+                          </li>`;
+      uploadedArea.classList.remove("onprogress");
+      uploadedArea.insertAdjacentHTML("afterbegin", uploadedHTML);
+      downloadBtn.style.display = 'block'; // Show the download button
+    }
+  });
+
+  xhr.responseType = 'blob'; // Expect a blob response (zip file)
+  xhr.onload = () => {
+    if (xhr.status === 200) {
+      const blob = xhr.response;
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = 'certificates.zip';
+      link.click();
+    }
+  };
+
+  let data = new FormData();
+  data.append("file", file);
+  xhr.send(data);
+}
+
+
+</script>
+</body>
+</html>
