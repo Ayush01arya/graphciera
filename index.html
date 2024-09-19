@@ -2,357 +2,356 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>File Upload</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gyaan Certificate Center</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
   <style>
-  /* Import Google font - Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+    /* Import Google font - Poppins */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
 
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: #6990F2;
-}
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #6990F2;
+    }
 
-::selection {
-  color: #fff;
-  background: #6990F2;
-}
+    ::selection {
+      color: #fff;
+      background: #6990F2;
+    }
 
-.wrapper {
-  width: 90%;
-  max-width: 430px;
-  background: #fff;
-  border-radius: 5px;
-  padding: 20px;
-  box-shadow: 7px 7px 12px rgba(0,0,0,0.05);
-}
+    .wrapper {
+      width: 90%;
+      max-width: 430px;
+      background: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 7px 7px 12px rgba(0,0,0,0.05);
+      position: relative;
+    }
 
-.wrapper header {
-  color: #6990F2;
-  font-size: 24px;
-  font-weight: 600;
-  text-align: center;
-}
+    .wrapper header {
+      color: #6990F2;
+      font-size: 24px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-.wrapper form {
-  height: auto;
-  display: flex;
-  cursor: pointer;
-  margin: 20px 0;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border-radius: 5px;
-  border: 2px dashed #6990F2;
-}
+    .wrapper form {
+      height: auto;
+      display: flex;
+      cursor: pointer;
+      margin: 20px 0;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border-radius: 5px;
+      border: 2px dashed #6990F2;
+      padding: 20px;
+      transition: background 0.3s;
+    }
 
-form :where(i, p) {
-  color: #6990F2;
-}
+    form :where(i, p) {
+      color: #6990F2;
+    }
 
-form i {
-  font-size: 50px;
-}
+    form i {
+      font-size: 50px;
+    }
 
-form p {
-  margin-top: 15px;
-  font-size: 16px;
-}
+    form p {
+      margin-top: 15px;
+      font-size: 16px;
+    }
 
-section .row {
-  margin-bottom: 10px;
-  background: #E9F0FF;
-  list-style: none;
-  padding: 10px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+    section .row {
+      margin-bottom: 10px;
+      background: #E9F0FF;
+      list-style: none;
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-section .row i {
-  color: #6990F2;
-  font-size: 24px;
-}
+    section .row i {
+      color: #6990F2;
+      font-size: 24px;
+    }
 
-section .details span {
-  font-size: 14px;
-}
+    section .details span {
+      font-size: 14px;
+    }
 
-.progress-area .row .content {
-  width: 100%;
-  margin-left: 15px;
-}
+    .progress-area .row .content {
+      width: 100%;
+      margin-left: 15px;
+    }
 
-.progress-area .details {
-  display: flex;
-  align-items: center;
-  margin-bottom: 7px;
-  justify-content: space-between;
-}
+    .progress-area .details {
+      display: flex;
+      align-items: center;
+      margin-bottom: 7px;
+      justify-content: space-between;
+    }
 
-.progress-area .content .progress-bar {
-  height: 6px;
-  width: 100%;
-  margin-bottom: 4px;
-  background: #fff;
-  border-radius: 30px;
-}
+    .progress-area .content .progress-bar {
+      height: 6px;
+      width: 100%;
+      margin-bottom: 4px;
+      background: #fff;
+      border-radius: 30px;
+    }
 
-.content .progress-bar .progress {
-  height: 100%;
-  width: 0%;
-  background: #6990F2;
-  border-radius: inherit;
-}
+    .content .progress-bar .progress {
+      height: 100%;
+      width: 0%;
+      background: #6990F2;
+      border-radius: inherit;
+    }
 
-.uploaded-area {
-  max-height: 232px;
-  overflow-y: auto;
-}
+    .uploaded-area {
+      max-height: 232px;
+      overflow-y: auto;
+    }
 
-.uploaded-area.onprogress {
-  max-height: 150px;
-}
+    .uploaded-area.onprogress {
+      max-height: 150px;
+    }
 
-.uploaded-area::-webkit-scrollbar {
-  width: 0px;
-}
+    .uploaded-area::-webkit-scrollbar {
+      width: 0px;
+    }
 
-.uploaded-area .row .content {
-  display: flex;
-  align-items: center;
-}
+    .uploaded-area .row .content {
+      display: flex;
+      align-items: center;
+    }
 
-.uploaded-area .row .details {
-  display: flex;
-  margin-left: 15px;
-  flex-direction: column;
-}
+    .uploaded-area .row .details {
+      display: flex;
+      margin-left: 15px;
+      flex-direction: column;
+    }
 
-.uploaded-area .row .details .size {
-  color: #404040;
-  font-size: 11px;
-}
+    .uploaded-area .row .details .size {
+      color: #404040;
+      font-size: 11px;
+    }
 
-.uploaded-area i.fa-check {
-  font-size: 16px;
-}
+    .uploaded-area i.fa-check {
+      font-size: 16px;
+    }
 
-.notification {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #fff;
-  border: 1px solid #6990F2;
-  border-radius: 5px;
-  padding: 15px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  max-width: 90%;
-  z-index: 1000;
-  box-sizing: border-box;
-}
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #fff;
+      border: 1px solid #6990F2;
+      border-radius: 5px;
+      padding: 15px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      max-width: 90%;
+      z-index: 1000;
+      box-sizing: border-box;
+      animation: fadeIn 0.5s ease-in-out;
+    }
 
-.notification p {
-  margin-bottom: 10px;
-  font-size: 16px;
-  text-align: center;
-}
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-.notification button {
-  background: #6990F2;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
+    .notification p {
+      margin-bottom: 10px;
+      font-size: 16px;
+      text-align: center;
+    }
 
-.notification button:hover {
-  background: #5a80d1;
-}
+    .notification button {
+      background: #6990F2;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
 
-.notification .close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #6990F2;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  padding: 5px;
-  font-size: 16px;
-}
+    .notification button:hover {
+      background: #5a80d1;
+    }
 
-.notification .close-btn:hover {
-  background: #5a80d1;
-}
+    .notification .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #6990F2;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      padding: 5px;
+      font-size: 16px;
+    }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .wrapper {
-    padding: 15px;
-  }
+    .notification .close-btn:hover {
+      background: #5a80d1;
+    }
 
-  .wrapper header {
-    font-size: 20px;
-  }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .wrapper {
+        padding: 15px;
+      }
 
-  .wrapper form i {
-    font-size: 40px;
-  }
+      .wrapper header {
+        font-size: 20px;
+      }
 
-  .wrapper form p {
-    font-size: 14px;
-  }
+      .wrapper form i {
+        font-size: 40px;
+      }
 
-  section .row i {
-    font-size: 20px;
-  }
+      .wrapper form p {
+        font-size: 14px;
+      }
 
-  section .details span {
-    font-size: 12px;
-  }
+      section .row i {
+        font-size: 20px;
+      }
 
-  .notification {
-    bottom: 10px;
-    right: 10px;
-    padding: 10px;
-  }
+      section .details span {
+        font-size: 12px;
+      }
 
-  .notification p {
-    font-size: 14px;
-  }
+      .notification {
+        bottom: 10px;
+        right: 10px;
+        padding: 10px;
+      }
 
-  .notification button {
-    padding: 8px 16px;
-  }
+      .notification p {
+        font-size: 14px;
+      }
 
-  .notification .close-btn {
-    font-size: 14px;
-    padding: 4px;
-  }
-}
+      .notification button {
+        padding: 8px 16px;
+      }
 
-@media (max-width: 480px) {
-  .wrapper {
-    padding: 10px;
-  }
+      .notification .close-btn {
+        font-size: 14px;
+        padding: 4px;
+      }
+    }
 
-  .wrapper header {
-    font-size: 18px;
-  }
+    @media (max-width: 480px) {
+      .wrapper {
+        padding: 10px;
+      }
 
-  .wrapper form i {
-    font-size: 30px;
-  }
+      .wrapper header {
+        font-size: 18px;
+      }
 
-  .wrapper form p {
-    font-size: 12px;
-  }
+      .wrapper form i {
+        font-size: 30px;
+      }
 
-  section .row i {
-    font-size: 18px;
-  }
+      .wrapper form p {
+        font-size: 12px;
+      }
 
-  section .details span {
-    font-size: 10px;
-  }
+      section .row i {
+        font-size: 18px;
+      }
 
-  .notification {
-    bottom: 5px;
-    right: 5px;
-    padding: 8px;
-  }
+      section .details span {
+        font-size: 10px;
+      }
 
-  .notification p {
-    font-size: 12px;
-  }
+      .notification {
+        bottom: 5px;
+        right: 5px;
+        padding: 8px;
+      }
 
-  .notification button {
-    padding: 6px 12px;
-  }
+      .notification p {
+        font-size: 12px;
+      }
 
-  .notification .close-btn {
-    font-size: 12px;
-    padding: 3px;
-  }
-}
+      .notification button {
+        padding: 6px 12px;
+      }
 
-.download-animation {
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.7);
-  color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
+      .notification .close-btn {
+        font-size: 12px;
+        padding: 3px;
+      }
+    }
 
-.download-animation.active {
-  display: block;
-}
+    .download-animation {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+    }
 
-.download-animation .loader {
-  border: 4px solid #fff;
-  border-top: 4px solid #6990F2;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  animation: spin 1s linear infinite;
-}
+    .download-animation.active {
+      display: block;
+    }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+    .download-animation .loader {
+      border: 4px solid #fff;
+      border-top: 4px solid #6990F2;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 10px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
   </style>
 </head>
 <body>
   <div class="wrapper">
-    <header><center><img src="https://github.com/Ayush01arya/ChatBot/raw/main/Group.svg"></center>Gyaan Certificate Center </header>
-<!--    <!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Certificate Generator</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--    <h1>Upload Excel File to Generate Certificates</h1>-->
-<!--    <form action="/upload" method="POST" enctype="multipart/form-data">-->
-<!--        <label for="file">Choose Excel File:</label>-->
-<!--        <input type="file" id="file" name="file" accept=".xlsx" required>-->
-<!--        <button type="submit">Generate Certificates</button>-->
-<!--    </form>-->
-<!--</body>-->
-<!--</html>-->
+    <header>
+      <center>
+        <img src="https://github.com/Ayush01arya/ChatBot/raw/main/Group.svg" alt="Gyaan Logo" style="max-width: 100px; margin-bottom: 10px;">
+      </center>
+      Gyaan Certificate Center
+    </header>
 
-
-
-      <form action="/upload" method="POST" enctype="multipart/form-data">
+    <form id="uploadForm">
       <input class="file-input" type="file" name="file" accept=".xlsx" hidden>
       <i class="fas fa-cloud-upload-alt"></i>
       <p>Browse File to Upload</p>
@@ -362,7 +361,7 @@ section .details span {
   </div>
 
   <div class="notification" id="notification">
-<!--    <button class="close-btn" id="closeBtn">&times;</button>-->
+    <button class="close-btn" id="closeBtn">&times;</button>
     <p>Certificate is ready for download!</p>
     <button id="downloadButton">Download Certificate</button>
   </div>
@@ -372,85 +371,137 @@ section .details span {
     <div class="loader"></div>
   </div>
 
-<script>
-  const form = document.querySelector("form"),
-      fileInput = document.querySelector(".file-input"),
-      progressArea = document.querySelector(".progress-area"),
-      uploadedArea = document.querySelector(".uploaded-area"),
-      downloadBtn = document.getElementById("downloadButton");
+  <script>
+    const form = document.getElementById("uploadForm"),
+          fileInput = document.querySelector(".file-input"),
+          progressArea = document.querySelector(".progress-area"),
+          uploadedArea = document.querySelector(".uploaded-area"),
+          notification = document.getElementById("notification"),
+          closeBtn = document.getElementById("closeBtn"),
+          downloadBtn = document.getElementById("downloadButton"),
+          downloadAnimation = document.getElementById("downloadAnimation");
 
-form.addEventListener("click", () => {
-  fileInput.click();
-});
+    let downloadedBlob = null; // To store the downloaded file blob
 
-fileInput.onchange = ({target}) => {
-  let file = target.files[0];
-  if (file) {
-    let fileName = file.name;
-    if (fileName.length >= 12) {
-      let splitName = fileName.split('.');
-      fileName = splitName[0].substring(0, 13) + "... ." + splitName[1];
+    // Open file dialog on form click
+    form.addEventListener("click", () => {
+      fileInput.click();
+    });
+
+    // Handle file selection
+    fileInput.onchange = ({target}) => {
+      let file = target.files[0];
+      if (file) {
+        let fileName = file.name;
+        if (fileName.length >= 20) { // Adjusted for better readability
+          let splitName = fileName.split('.');
+          fileName = splitName[0].substring(0, 17) + "... ." + splitName[1];
+        }
+        uploadFile(file);
+      }
     }
-    uploadFile(file);
-  }
-}
 
-function uploadFile(file) {
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", "https://graphciera.onrender.com/upload", true); // Update URL to your API's domain
-  xhr.upload.addEventListener("progress", ({loaded, total}) => {
-    let fileLoaded = Math.floor((loaded / total) * 100);
-    let fileTotal = Math.floor(total / 1000);
-    let fileSize = (fileTotal < 1024) ? fileTotal + " KB" : (loaded / (1024*1024)).toFixed(2) + " MB";
-    let progressHTML = `<li class="row">
-                          <i class="fas fa-file-alt"></i>
-                          <div class="content">
-                            <div class="details">
-                              <span class="name">${file.name} • Uploading</span>
-                              <span class="percent">${fileLoaded}%</span>
-                            </div>
-                            <div class="progress-bar">
-                              <div class="progress" style="width: ${fileLoaded}%"></div>
-                            </div>
-                          </div>
-                        </li>`;
-    uploadedArea.classList.add("onprogress");
-    progressArea.innerHTML = progressHTML;
-    if (loaded === total) {
-      progressArea.innerHTML = "";
-      let uploadedHTML = `<li class="row">
-                            <div class="content upload">
+    // Function to upload the file
+    function uploadFile(file) {
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "https://graphciera.onrender.com/upload", true); // Update URL to your API's domain
+
+      // Update progress bar
+      xhr.upload.addEventListener("progress", ({loaded, total}) => {
+        let fileLoaded = Math.floor((loaded / total) * 100);
+        let fileTotal = Math.floor(total / 1000);
+        let fileSize = (fileTotal < 1024) ? fileTotal + " KB" : (loaded / (1024*1024)).toFixed(2) + " MB";
+        let progressHTML = `<li class="row">
                               <i class="fas fa-file-alt"></i>
-                              <div class="details">
-                                <span class="name">${file.name} • Uploaded</span>
-                                <span class="size">${fileSize}</span>
+                              <div class="content">
+                                <div class="details">
+                                  <span class="name">${file.name} • Uploading</span>
+                                  <span class="percent">${fileLoaded}%</span>
+                                </div>
+                                <div class="progress-bar">
+                                  <div class="progress" style="width: ${fileLoaded}%"></div>
+                                </div>
                               </div>
-                            </div>
-                            <i class="fas fa-check"></i>
-                          </li>`;
-      uploadedArea.classList.remove("onprogress");
-      uploadedArea.insertAdjacentHTML("afterbegin", uploadedHTML);
-      downloadBtn.style.display = 'block'; // Show the download button
+                            </li>`;
+        uploadedArea.classList.add("onprogress");
+        progressArea.innerHTML = progressHTML;
+      });
+
+      // Handle upload completion
+      xhr.onload = () => {
+        if (xhr.status === 200) {
+          uploadedArea.classList.remove("onprogress");
+          progressArea.innerHTML = "";
+          let uploadedHTML = `<li class="row">
+                                <div class="content upload">
+                                  <i class="fas fa-file-alt"></i>
+                                  <div class="details">
+                                    <span class="name">${file.name} • Uploaded</span>
+                                    <span class="size">${(file.size / (1024*1024)).toFixed(2)} MB</span>
+                                  </div>
+                                </div>
+                                <i class="fas fa-check"></i>
+                              </li>`;
+          uploadedArea.insertAdjacentHTML("afterbegin", uploadedHTML);
+
+          // Store the blob for download
+          const blob = xhr.response;
+          downloadedBlob = blob;
+
+          // Show notification with download button
+          notification.style.display = 'flex';
+        } else {
+          alert("Upload failed. Please try again.");
+        }
+      };
+
+      xhr.responseType = 'blob'; // Expect a blob response (zip file)
+
+      // Handle errors
+      xhr.onerror = () => {
+        alert("An error occurred during the upload. Please try again.");
+      };
+
+      let data = new FormData();
+      data.append("file", file);
+      xhr.send(data);
     }
-  });
 
-  xhr.responseType = 'blob'; // Expect a blob response (zip file)
-  xhr.onload = () => {
-    if (xhr.status === 200) {
-      const blob = xhr.response;
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob);
-      link.download = 'certificates.zip';
-      link.click();
-    }
-  };
+    // Close notification
+    closeBtn.addEventListener("click", () => {
+      notification.style.display = 'none';
+    });
 
-  let data = new FormData();
-  data.append("file", file);
-  xhr.send(data);
-}
+    // Handle download button click
+    downloadBtn.addEventListener("click", () => {
+      if (downloadedBlob) {
+        // Show download animation
+        downloadAnimation.classList.add("active");
 
+        // Create a temporary link to trigger the download
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(downloadedBlob);
+        link.download = 'certificates.zip';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
 
-</script>
+        // Hide download animation after a short delay
+        setTimeout(() => {
+          downloadAnimation.classList.remove("active");
+          notification.style.display = 'none';
+        }, 2000);
+      } else {
+        alert("No file available for download.");
+      }
+    });
+
+    // Optional: Hide notification when clicking outside of it
+    window.addEventListener("click", (e) => {
+      if (e.target == notification) {
+        notification.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
